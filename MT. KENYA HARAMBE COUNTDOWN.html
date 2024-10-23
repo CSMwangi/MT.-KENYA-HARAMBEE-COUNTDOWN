@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT. KENYA STUDENTS MEGA HARAMBE</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eb0808; /* Light grey background for better contrast */
+            color: #000; /* Default text color */
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff; /* White background for the container */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            padding: 20px; /* Reduced padding for a more compact look */
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 1.8em; /* Slightly reduced font size for h1 */
+            font-weight: bold;
+            color: #1E90FF; /* Blue color */
+        }
+
+        .slogan {
+            font-size: 1.5em; /* Reduced font size for slogan */
+            color: #FFD700; /* Mustard yellow color */
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #counties {
+            font-size: 1.2em; /* Reduced font size for counties */
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        #countdown {
+            font-size: 1.5em; /* Reduced font size for countdown */
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .lyrics p {
+            font-size: 1.2em; /* Reduced font size for lyrics */
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .treasurer {
+            margin-top: 20px;
+            font-size: 1.2em; /* Reduced font size for treasurer */
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em; /* Further reduce h1 font size for smaller screens */
+            }
+
+            .slogan, #counties, #countdown, .lyrics p, .treasurer {
+                font-size: 1em; /* Further reduce font size for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MT. KENYA STUDENTS MEGA HARAMBE</h1>
+        <div id="countdown"></div>
+        <div id="counties"></div>
+        <div class="slogan">USIGUZE MLIMA</div> <!-- Slogan -->
+        <h2>PURCHASING: REGIONAL ESSENTIAL SUFURIAS, CUPS, PLATES, AND SPOONS</h2>
+        <div class="lyrics">
+            <p>UROMWE, THAYUU NA WENDANI!</p>
+        </div>
+        <div class="treasurer">
+            <p>FOR CONTRIBUTIONS, CONTACT:</p>
+            <p>WANGUI KAIRO - 0796257636</p>
+        </div>
+    </div>
+    <script>
+        // Set the date we're counting down to
+        const countdownDate = new Date("October 31, 2024 21:00:00").getTime();
+
+        // Counties array with associated colors
+        const counties = [
+            { name: "THE COUNTY OF NAKURU.", color: "#1E90FF" }, // Blue
+            { name: "THE COUNTY OF LAIKIPIA.", color: "#FFD700" }, // Mustard Yellow
+            { name: "THE COUNTY OF MURANG'A.", color: "#1E90FF" }, // Blue
+            { name: "THE COUNTY OF KIAMBU.", color: "#FFD700" }, // Mustard Yellow
+            { name: "THE COUNTY OF EMBU.", color: "#1E90FF" }, // Blue
+            { name: "THE COUNTY OF KIRINYAGA.", color: "#FFD700" }, // Mustard Yellow
+            { name: "THE COUNTY OF NYERI.", color: "#1E90FF" }, // Blue
+            { name: "THE COUNTY OF NYANDARUA.", color: "#FFD700" } // Mustard Yellow
+        ];
+
+        let currentCountyIndex = 0;
+
+        // Function to display the counties systematically
+        function displayCounties() {
+            const county = counties[currentCountyIndex];
+            const countiesElement = document.getElementById("counties");
+            countiesElement.innerText = county.name;
+            countiesElement.style.color = county.color; // Change county color
+            currentCountyIndex = (currentCountyIndex + 1) % counties.length; // Loop through counties
+        }
+
+        // Update the countdown every second
+        const countdownFunction = setInterval(function() {
+            // Get the current date and time
+            const now = new Date().getTime();
+
+            // Calculate the distance between now and the countdown date
+            const distance = countdownDate - now;
+
+            // Time calculations for days, hours, minutes, and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the countdown element
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "COUNTDOWN FINISHED!";
+            }
+
+            // Display counties every 3 seconds
+            if (currentCountyIndex < counties.length) {
+                setTimeout(() => {
+                    displayCounties();
+                }, 3000); // Change county every 3 seconds
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
